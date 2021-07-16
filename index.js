@@ -15,7 +15,8 @@ global.mocks = {
 app.use(function(request, response, next) {
   response.setHeader('Access-Control-Allow-Origin', '*');
   response.setHeader('Access-Control-Allow-Methods', 'OPTIONS, PUT, PATCH, DELETE'); //옵션: 올바른 권한을 가졌는지 확인 
-  response.setHeader('Access-Control-Allow-Headers', 'Content-Type'); //통신 시 제이슨 or xml 타입 체크 
+  // response.setHeader('Access-Control-Allow-Headers', 'Content-Type'); //통신 시 제이슨 or xml 타입 체크 
+  response.setHeader('Access-Control-Allow-Headers', 'Content-Type, x-jwt-token'); //헤더에 x-jwt-token 추가
   next();
 });
 

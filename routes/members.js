@@ -1,6 +1,22 @@
 const router = global.express.Router();
 const members = global.mocks.members;
+const jwtAuth = require('../middlewares/jwtAuth.js');
 
+
+//로그인 api
+router.post('/login/', function(request, response) {
+  // TODO: 로그인 가능한 회원인지 확인
+  jwtAuth.tokenCreate(request, response, request.body);
+});
+
+//미들웨어는 경로와 함수 사이에 넣어준다.
+router.get('/login/', jwtAuth.tokenCheck, function(request, response) {
+  response.status(200).send({
+    decoded: request.decoded
+  });
+});
+
+//멤버스 api
 router.post('/', function(request, response) {
   members.push(request.body);
   console.log('Done members post', members);
