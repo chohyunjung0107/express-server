@@ -8,7 +8,8 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(require('./swagger.json'))
 
 // Mock data
 global.mocks = {
-  members: require('./mocks/members.json')
+  members: require('./mocks/members.json'),
+  records: require('./mocks/records.json')
 };
 
 // CROSS, Methods, Headers
@@ -23,6 +24,7 @@ app.use(function(request, response, next) {
 // API router
 app.use(express.json()); //제이슨 형식을 사용하겟다(바디부분에 포스트, 패치부분을 허용)
 app.use('/api/v1/members', require('./routes/members.js')); 
+app.use('/api/v1/records', require('./routes/records.js')); 
 app.use('/api/v1/search', require('./routes/search.js'));
 
 // Start server
